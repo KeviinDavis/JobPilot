@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ job.company }} - {{ job.position }}</h2>
+<p><strong>Date Applied:</strong> {{ job.date_applied }}</p>
+<p><strong>Status:</strong> {{ job.status }}</p>
+<p><strong>Notes:</strong> {{ job.notes }}</p>
+<a href="{% url 'job_list' %}">Back to Jobs</a>
+{% endblock %}

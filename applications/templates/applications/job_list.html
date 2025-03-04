@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Job Applications</h2>
+
+    <a href="{% url 'job_create' %}">➕ Add a New Job</a> 
+
+    {% for job in jobs %}
+        <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})</p>
+    {% empty %}
+        <p>No job applications found.</p>
+    {% endfor %}
+{% endblock %}
