@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import JobApplication
 from .forms import JobApplicationForm 
+from django.contrib import messages
 
 @login_required
 def job_list(request):
@@ -27,6 +28,25 @@ def job_create(request):
     else:
         form = JobApplicationForm()
     return render(request, 'applications/job_form.html', {'form': form})
+
+@login_required
+def job_update(request, job_id):
+    job = get_object_or_404(JobApplication, id=job_id, user=request.user)
+    if request.method == 'POST':
+        form = JobApplicationForm(request.POST, instance=job)
+        if form.is_valid():
+            form.save()
+            return redirect('job_list')
+    else:
+        form = JobApplicationForm(instance=job)
+    return render(request, 'applications/job_form.html', {'form': form})
+    
+@login_required
+def job_delete(request, job_id):
+    job = get_object_or_404(JobApplication, id=job_id, user=request.user)
+    job.delete()
+    messages.success(request, "Job application deleted successfully.")
+    return redirect('job_list')
 
 def signup(request):
     if request.method == "POST":
