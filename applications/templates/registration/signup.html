@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobPilot</title>
+    <title>Sign Up - JobPilot</title>
 </head>
 <body>
     <header>
         <h1>Welcome to JobPilot</h1>
         <nav>
-            {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
-            {% endif %}
+            <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
         </nav>
     </header>
 
     <main>
-        {% block content %}
-        {% endblock %}
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_username">Username:</label>
+            {{ form.username }}
+            
+            <label for="id_password1">Password:</label>
+            {{ form.password1 }}
+            
+            <label for="id_password2">Confirm Password:</label>
+            {{ form.password2 }}
+            
+            <button type="submit">Register</button>
+        </form>
+        
+
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
     </main>
 </body>
 </html>
