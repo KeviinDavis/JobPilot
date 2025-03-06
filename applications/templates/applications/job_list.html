@@ -2,25 +2,73 @@
 
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
     <h2>Job Applications</h2>
 
     <a href="{% url 'job_create' %}"> Add a New Job</a> 
 
+    <!-- Section: Applied -->
+    <h3>Applied</h3>
     {% for job in jobs %}
-        <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
-            <a href="{% url 'job_update' job.id %}"> Edit</a>
-            <a href="{% url 'job_delete' job.id %}">Delete</a>
-
-        </p>
+        {% if job.status == "Applied" %}
+            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
+                <a href="{% url 'job_update' job.id %}">Edit</a>
+                <a href="{% url 'job_delete' job.id %}">Delete</a>
+            </p>
+        {% endif %}
     {% empty %}
         <p>No job applications found.</p>
     {% endfor %}
+
+    <!-- Section: Interviewing -->
+    <h3>Interviewing</h3>
+    {% for job in jobs %}
+        {% if job.status == "Interviewing" %}
+            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
+                <a href="{% url 'job_update' job.id %}">Edit</a>
+                <a href="{% url 'job_delete' job.id %}">Delete</a>
+            </p>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Section: Offer Received -->
+    <h3>Offer Received</h3>
+    {% for job in jobs %}
+        {% if job.status == "Offer Received" %}
+            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
+                <a href="{% url 'job_update' job.id %}">Edit</a>
+                <a href="{% url 'job_delete' job.id %}">Delete</a>
+            </p>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Section: Rejected -->
+    <h3>Rejected</h3>
+    {% for job in jobs %}
+        {% if job.status == "Rejected" %}
+            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
+                <a href="{% url 'job_update' job.id %}">Edit</a>
+                <a href="{% url 'job_delete' job.id %}">Delete</a>
+            </p>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Section: Accepted -->
+    <h3>Accepted</h3>
+    {% for job in jobs %}
+        {% if job.status == "Accepted" %}
+            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
+                <a href="{% url 'job_update' job.id %}">Edit</a>
+                <a href="{% url 'job_delete' job.id %}">Delete</a>
+            </p>
+        {% endif %}
+    {% endfor %}
+
 {% endblock %}
