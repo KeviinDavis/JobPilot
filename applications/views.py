@@ -9,7 +9,9 @@ from django.contrib import messages
 @login_required
 def job_list(request):
     jobs = JobApplication.objects.filter(user=request.user)  
-    return render(request, 'applications/job_list.html', {'jobs': jobs})
+    status_categories = ["Applied", "Interviewing", "Offer Received", "Rejected", "Accepted"]  # Pass this to the template
+    return render(request, 'applications/job_list.html', {'jobs': jobs, 'status_categories': status_categories})
+
 
 @login_required
 def job_detail(request, job_id):
@@ -40,6 +42,7 @@ def job_update(request, job_id):
     else:
         form = JobApplicationForm(instance=job)
     return render(request, 'applications/job_form.html', {'form': form})
+
     
 @login_required
 def job_delete(request, job_id):
@@ -47,6 +50,20 @@ def job_delete(request, job_id):
     job.delete()
     messages.success(request, "Job application deleted successfully.")
     return redirect('job_list')
+
+@login_required
+def update_status(request, job_id):
+    job = get_object_or_404(JobApplication, id=job_id, user=request.user)
+    
+    if request.method == "POST":
+        new_status = request.POST.get("status")
+        if new_status in dict(JobApplication.STATUS_CHOICES):
+            job.status = new_status
+            job.save()
+            messages.success(request, f"Status updated to {new_status}!")
+    
+    return redirect("job_list")
+
 
 def signup(request):
     if request.method == "POST":

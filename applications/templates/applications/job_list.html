@@ -14,61 +14,33 @@
 
     <a href="{% url 'job_create' %}"> Add a New Job</a> 
 
-    <!-- Section: Applied -->
-    <h3>Applied</h3>
-    {% for job in jobs %}
-        {% if job.status == "Applied" %}
-            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
-                <a href="{% url 'job_update' job.id %}">Edit</a>
-                <a href="{% url 'job_delete' job.id %}">Delete</a>
-            </p>
-        {% endif %}
-    {% empty %}
-        <p>No job applications found.</p>
-    {% endfor %}
+    {% for status_category in status_categories %}
+        <h3>{{ status_category }}</h3>
+        {% for job in jobs %}
+    {% if job.status == status_category %}
+        <p>
+            <!-- Status Dropdown -->
+            <form method="POST" action="{% url 'update_status' job.id %}">
+                {% csrf_token %}
+                <select name="status" onchange="this.form.submit()">
+                    {% for choice in job.STATUS_CHOICES %}
+                        <option value="{{ choice.0 }}" {% if job.status == choice.0 %}selected{% endif %}>
+                            {{ choice.1 }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
 
-    <!-- Section: Interviewing -->
-    <h3>Interviewing</h3>
-    {% for job in jobs %}
-        {% if job.status == "Interviewing" %}
-            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
-                <a href="{% url 'job_update' job.id %}">Edit</a>
-                <a href="{% url 'job_delete' job.id %}">Delete</a>
-            </p>
-        {% endif %}
-    {% endfor %}
+            <!-- Job Details -->
+            {{ job.company_name }} - {{ job.job_title }}
 
-    <!-- Section: Offer Received -->
-    <h3>Offer Received</h3>
-    {% for job in jobs %}
-        {% if job.status == "Offer Received" %}
-            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
-                <a href="{% url 'job_update' job.id %}">Edit</a>
-                <a href="{% url 'job_delete' job.id %}">Delete</a>
-            </p>
-        {% endif %}
-    {% endfor %}
+            <!-- Edit & Delete Buttons -->
+            <a href="{% url 'job_update' job.id %}"> Edit</a>
+            <a href="{% url 'job_delete' job.id %}"> Delete</a>
+        </p>
+    {% endif %}
+{% endfor %}
 
-    <!-- Section: Rejected -->
-    <h3>Rejected</h3>
-    {% for job in jobs %}
-        {% if job.status == "Rejected" %}
-            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
-                <a href="{% url 'job_update' job.id %}">Edit</a>
-                <a href="{% url 'job_delete' job.id %}">Delete</a>
-            </p>
-        {% endif %}
-    {% endfor %}
-
-    <!-- Section: Accepted -->
-    <h3>Accepted</h3>
-    {% for job in jobs %}
-        {% if job.status == "Accepted" %}
-            <p>{{ job.company_name }} - {{ job.job_title }} ({{ job.status }})
-                <a href="{% url 'job_update' job.id %}">Edit</a>
-                <a href="{% url 'job_delete' job.id %}">Delete</a>
-            </p>
-        {% endif %}
     {% endfor %}
 
 {% endblock %}
