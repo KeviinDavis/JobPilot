@@ -1,0 +1,340 @@
+/* ========== DASHBOARD RESPONSIVENESS ========== */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+    }
+
+    .status-section {
+        width: 100%; 
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Sidebar collapses into a top menu */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #333333;
+        color: white;
+        position: fixed;
+        top: 60px; /* Pushes it below header */
+        left: 0;
+        z-index: 1000;
+    }
+
+    .sidebar a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .content {
+        margin-left: 0;  /* No extra margin on small screens */
+        padding-top: 120px; /* Prevents content from being covered by sidebar */
+    }
+}
+
+/* --- Global Styles --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* --- Header Fix: Stays at the Top --- */
+header {
+    background-color: black;
+    color: white;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    position: fixed; /* Keeps header fixed at top */
+    top: 0;
+    left: 0;
+    z-index: 1100;
+}
+
+/* --- Ensures Content Starts Below Header --- */
+.content {
+    margin-top: 60px; /* Pushes content down to prevent overlap */
+}
+
+/* --- Sidebar Navigation --- */
+.sidebar {
+    width: 170px; /* Smaller sidebar */
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    left: 0;
+    top: 60px; /* Starts below the fixed header */
+    height: calc(100vh - 60px); /* Adjusts height based on header */
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background-color: #444;
+}
+
+/* --- Sidebar Becomes Top Bar on Mobile --- */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .sidebar nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+    }
+
+    .sidebar li {
+        display: inline;
+        list-style: none;
+    }
+
+    .sidebar a {
+        display: inline-block;
+        padding: 10px 15px;
+    }
+
+    .content {
+        margin-left: 0; /* No extra margin on small screens */
+        padding-top: 120px; /* Prevents content from being covered by sidebar */
+    }
+}
+
+/* --- Centering and Form Styling --- */
+.auth-container, .form-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container h2, .form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-container form, .form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-container label, .form-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.auth-container input, .form-container input,
+.auth-container select, .form-container select,
+.auth-container textarea, .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.auth-container button, .form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-container button:hover, .form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Dashboard Layout --- */
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.job-sections {
+    display: flex;
+    gap: 20px;
+    width: 80%;
+}
+
+.job-category {
+    flex: 1;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.job-category h3 {
+    margin-top: 0;
+}
+
+/* --- Messages (Success/Error Alerts) --- */
+.alert {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* --- Sidebar Navigation --- */
+.sidebar {
+    width: 170px; /* Adjusted smaller sidebar */
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    left: 0;
+    top: 105px; /* Starts below the fixed header */
+    height: calc(100vh - 60px); /* Adjusts height based on header */
+}
+
+/* --- Ensure Content is Visible & Not Behind Sidebar --- */
+.content {
+    margin-left: 180px;  /* Content starts after sidebar */
+    padding: 60px;
+}
+
+/* --- Mobile View Fix (Sidebar Becomes Top Menu) --- */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        padding: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .sidebar nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+    }
+
+    .sidebar li {
+        display: inline;
+        list-style: none;
+    }
+
+    .sidebar a {
+        display: inline-block;
+        padding: 10px 15px;
+    }
+
+    /* Content Moves Down & Centers */
+    .content {
+        margin-left: 0; /* No extra margin on small screens */
+        padding-top: 120px; /* Prevents content from being covered by sidebar */
+    }
+}
+
+/* Job Status Columns */
+.job-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Individual columns */
+.job-column {
+    flex: 1;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 200px; /* Prevent columns from becoming too small */
+}
+
+/* Job Cards */
+.job-card {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Dropdown */
+.job-card select {
+    width: 100%;
+    padding: 5px;
+}
+
+/* Edit & Delete Links */
+.job-card a {
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.job-card a:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE: Stack Columns on Small Screens */
+@media (max-width: 768px) {
+    .job-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .job-column {
+        width: 100%;
+    }
+}

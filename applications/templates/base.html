@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobPilot</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Welcome to JobPilot</h1>
-        <nav>
+    <div class="container">
+        
+        <!-- Banner (Always Visible) -->
+        <header class="top-bar">
+            <h1 class="logo">JobPilot ✈️</h1>
             {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+                <p class="greeting">Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
             {% endif %}
-        </nav>
-    </header>
+        </header>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+        <!-- Sidebar (Only for Authenticated Users) -->
+        {% if user.is_authenticated %}
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'job_list' %}" class="active">Dashboard</a></li>
+                    <li><a href="{% url 'job_create' %}">Add Job</a></li>
+                    <li><a href="#">Resumes</a></li>
+                    <li><a href="{% url 'logout' %}" class="logout">Sign Out</a></li>
+                </ul>
+            </nav>
+        </aside>
+        {% endif %}
+
+        <!-- Main Content -->
+        <main class="content {% if not user.is_authenticated %}full-width{% endif %}">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
 </body>
 </html>
