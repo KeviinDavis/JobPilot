@@ -1,1 +1,1 @@
-web: gunicorn jobpilot.wsgi
+web: gunicorn config.wsgi
