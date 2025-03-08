@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if not 'ON_HEROKU' in os.environ:
-    DEBUG = True
+    DEBUG = not os.getenv('ON_HEROKU', False)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -99,9 +99,14 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': '<dbnamehere>',
+            'NAME': 'd887dto7ehures',  
+            'USER': 'u55iu09ndtm06m',  
+            'PASSWORD': 'pcb8acb4ba3ca1a0a3faa0173f5cb97cd06afd5d4fbe7d67dba30fb6d81c6a37d',  # Extracted password
+            'HOST': 'cd27da2sn4hj7h.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',  # Extracted host
+            'PORT': '5432', 
         }
     }
+
 
 
 
