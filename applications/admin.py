@@ -7,4 +7,3 @@ class JobApplicationAdmin(admin.ModelAdmin):
     list_filter = ('status', 'company_name')
     search_fields = ('job_title', 'company_name', 'user__username')
 
-# Register models below:
