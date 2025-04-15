@@ -1,0 +1,31 @@
+<!-- templates/applications/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JobPilot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">JobPilot ✈️</div>
+        <nav>
+            <ul>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="{% url 'login' %}">Log in</a></li>
+                <li><a href="{% url 'signup' %}">Sign up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Track your job applications</h1>
+        <p>Manage your job search in one place. Organize and track the entire process.</p>
+        <a href="{% url 'login' %}" class="cta">Get Started</a>
+    </section>
+</body>
+</html>
