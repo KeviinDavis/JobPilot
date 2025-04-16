@@ -38,6 +38,128 @@
     }
 }
 
+
+/* Basic Reset & Global Styles (Optional but recommended) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif; /* or your preferred font */
+    color: #3e3e3e; /* default text color */
+  }
+  
+  /* HEADER CONTAINER */
+.landing-header {
+    width: 100%;
+    display: flex;             /* Enables horizontal layout */
+    align-items: center;       /* Vertically center items */
+    background-color: #0c0c0c;    /* Dark background, adjust as needed */
+    /* padding: 1rem 2rem;   */
+    padding-left: 6rem;
+    padding-right: 6rem;
+    border-bottom: 1px solid #3e3e3e; /* Subtle line under header, if desired */
+
+  }
+  
+  /* LOGO (LEFT) */
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;               /* Logo text in white */
+  }
+  
+  /* CENTER NAV: Pricing, Contact, Reviews */
+  .center-nav ul {
+    display: flex;
+    gap: 1.5rem;               /* Spacing between links */
+    margin: 0 auto;            /* Push these links to the center horizontally */
+    list-style-type: none;
+  }
+  
+  /* AUTH NAV: Log in, Sign up (RIGHT) */
+  .auth-nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style-type: none;
+  }
+  
+  /* LINKS: Make all links white */
+  .landing-header a {
+    text-decoration: none;
+    color: #b3b3b3;               /* White text color */
+    font-weight: 500;
+  }
+  
+  .landing-header a:hover {
+    color: #ccc;               /* Slightly lighter hover color */
+  }
+  
+/* Styles for the white Sign Up button */
+.signup-button {
+    color: #000000;
+    padding: 0.5rem 1rem;
+    border: 1px solid #a7a6a6;
+    border-radius: 9px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.landing-header a.signup-button {
+    background-color: #e3e2e2;
+    color: #010101;
+}
+
+/* Add a hover state to see the transition effect */
+.landing-header a.signup-button:hover {
+    background-color: #ffffff; /* change to a whiter color */
+    color: #000000;           /* or any color you prefer */
+}
+
+  
+  
+  /* Home/Landing Hero Section (Section 1B) */
+  .hero-section {
+    background-color: #0c0c0c; /* or a brand color, gradient, or background image */
+    padding: 4rem 2rem;
+    text-align: center; /* Center the content */
+    color: white;
+  }
+  
+  .hero-content {
+    max-width: 800px; /* Constrain content width on large screens */
+    margin: 0 auto; /* Center the container */
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    color: #f9f6f6; /* Slightly lighter text for the paragraph */
+  }
+  
+  .cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #007BFF; /* Example brand color; swap with your color */
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #0056b3; /* Darken on hover */
+  }
+
+  
+  
 /* --- Global Styles --- */
 body {
     font-family: Arial, sans-serif;
