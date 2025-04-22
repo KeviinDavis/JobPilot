@@ -1,21 +1,18 @@
+{% load static django_browser_reload %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>JobPilot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% load static %}
   <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
 
-  <!-- HEADER (Section 1A) -->
+  <!-- HEADER -->
   <header class="landing-header">
-    
-    <!-- Logo on the far left -->
-    <div class="logo">Pilot </div>
-  
-    <!-- Middle Nav: Pricing, Contact, Reviews -->
+    <div class="logo">Pilot</div>
     <nav class="center-nav">
       <ul>
         <li><a href="#">Pricing</a></li>
@@ -23,27 +20,111 @@
         <li><a href="#">Reviews</a></li>
       </ul>
     </nav>
-  
-    <!-- Right-side Nav: Log in, Sign up -->
     <nav class="auth-nav">
       <ul>
         <li><a href="{% url 'login' %}">Log in</a></li>
         <li><a href="{% url 'signup' %}" class="signup-button">Sign up</a></li>
-    </ul>
+      </ul>
     </nav>
   </header>
   
-
-  <!-- HERO (Section 1B) -->
+  <!-- HERO -->
   <section class="hero-section">
-    <div class="hero-content">
-      <h1>Track your job applications</h1>
-      <p>Manage your job search in one place. Organize and track the entire process.</p>
-      <a href="{% url 'login' %}" class="cta-button">Get Started</a>
+    <div class="hero-container">
+      <div class="hero-left">
+        <h1>Track your job applications</h1>
+        <p>Let AI help enhance your resume and manage your job search in one place. Organize and track the entire process.</p>
+        <a href="{% url 'login' %}" class="cta-button">Get Started</a>
+      </div>
+      <div class="hero-right">
+        <img src="{% static 'images/appnotif.png' %}" alt="App screenshot">
+      </div>
     </div>
   </section>
 
-  <!-- We will add the next sections (Section 2, Section 3, etc.) below as we go. -->
+  <!-- FEATURES INTRO -->
+<section class="features-intro">
+    <div class="intro-container">
+      <h2>Features designed for every step of your job search</h2>
+      <p>From AI‑powered resume insights to application tracking, everything you need for your journey.</p>
+    </div>
+  </section>
   
+  <!-- EXISTING 3‑CARD SECTION -->
+  <section class="cards-section">
+    <!-- … cards-container … -->
+  </section>
+  
+  
+  <!-- 3‑CARD FEATURE SECTION -->
+  <section class="cards-section">
+    <div class="cards-container">
+      <div class="card">
+        <img src="{% static 'images/interview-slide (1).webp' %}" alt="Interview slide">
+      </div>
+      <div class="card">
+        <img src="{% static 'images/goodfaces.jpg' %}" alt="Good faces">
+      </div>
+      <div class="card">
+        <img src="{% static 'images/resume builder.png' %}"
+             alt="AI Resume Builder"
+             class="focus-left">
+      </div>
+
+<!-- OVERVIEW SECTION -->
+<section class="overview">
+  <div class="overview-container">
+
+    <!-- 1. Label -->
+    <span class="overview__label">Overview</span>
+
+    <!-- 2. Title -->
+    <h2 class="overview__title">Streamline your job search</h2>
+
+    <!-- 3. Flex row: cards on left, image on right -->
+    <div class="overview__row">
+
+      <!-- LEFT: Cards Container (40%) -->
+      <div class="overview__cards-container">
+        <div class="overview__cards">
+          <div class="overview__card">
+            <!-- <span class="overview__icon">✏️</span> -->
+            <div>
+              <h4>Resume Builder</h4>
+              <p>Effortlessly build your resume and optimize where you need it.</p>
+            </div>
+          </div>
+          <div class="overview__card">
+            <!-- <span class="overview__icon">📋</span> -->
+            <div>
+              <h4>Track Job Applications</h4>
+              <p>Track all your job applications in one place.</p>
+            </div>
+          </div>
+          <div class="overview__card">
+            <!-- <span class="overview__icon">😊</span> -->
+            <div>
+              <h4>Practice Interviews</h4>
+              <p>Practice technical and behavioral interviews for any role.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Image (60%) -->
+      <div class="overview__image-wrap">
+        <img
+          src="{% static 'images/ov.jpg' %}"
+          alt="Overview dashboard"
+          class="overview__image"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  {% django_browser_reload_script %}
 </body>
 </html>
