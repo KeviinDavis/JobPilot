@@ -6,6 +6,9 @@ from .models import JobApplication
 from .forms import JobApplicationForm 
 from django.contrib import messages
 
+def home(request):
+    return render(request, 'applications/home.html')
+
 @login_required
 def job_list(request):
     jobs = JobApplication.objects.filter(user=request.user)  
