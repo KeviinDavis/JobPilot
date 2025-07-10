@@ -41,10 +41,6 @@ INSTALLED_APPS = [
     'applications',
 ]
 
-# Only include django_browser_reload in development
-if DEBUG:
-    INSTALLED_APPS += ['django_browser_reload']
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

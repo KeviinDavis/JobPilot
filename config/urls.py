@@ -22,10 +22,6 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path("__reload__/", include("django_browser_reload.urls")),
-
-
     path('accounts/', include('django.contrib.auth.urls')),
     path('jobs/', include('applications.urls')),  # Ensure this points to the correct app
     path('signup/', include('applications.urls')),  # Ensure the signup route works
