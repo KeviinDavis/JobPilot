@@ -9,22 +9,20 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 
-# Load .env in development; Heroku config vars override these
+# Load local .env (ignored on Heroku—Heroku uses its Config Vars)
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-# DEBUG can be controlled via env var locally if needed,
-# but on Heroku we rely on ON_HEROKU to switch databases only.
+# Always read DEBUG from env; default to False in production
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 'yes')
 
 ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
-    # Django built-ins
+    # Django core apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -32,22 +30,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Your app
+    # Your application
     'applications',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Whitenoise should come **after** SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # Serve static files directly
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -70,8 +70,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database: Postgres on Heroku, SQLite locally
-if 'ON_HEROKU' in os.environ:
+# Database: use Postgres on Heroku, SQLite locally
+if os.getenv('DATABASE_URL'):
     DATABASES = {
         "default": dj_database_url.config(
             env='DATABASE_URL',
@@ -89,7 +89,7 @@ else:
     }
 
 
-# Password validators (uncomment as you go)
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     # {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     # {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -105,13 +105,14 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JS, Images)
+# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # Auth redirects
 LOGIN_URL = 'login'
