@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'applications',
 ]
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # Whitenoise should come **after** SecurityMiddleware
@@ -47,6 +46,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Only include browser-reload in development
+if DEBUG:
+    INSTALLED_APPS.append('django_browser_reload')
+    # Insert the middleware right after CommonMiddleware
+    idx = MIDDLEWARE.index('django.middleware.common.CommonMiddleware') + 1
+    MIDDLEWARE.insert(idx, 'django_browser_reload.middleware.BrowserReloadMiddleware')
 
 
 ROOT_URLCONF = 'config.urls'

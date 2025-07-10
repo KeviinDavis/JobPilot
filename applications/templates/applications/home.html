@@ -1,9 +1,10 @@
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JobPilot</title>
+  <title>JobPilot Landing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
@@ -42,87 +43,60 @@
   </section>
 
   <!-- FEATURES INTRO -->
-<section class="features-intro">
+  <section class="features-intro">
     <div class="intro-container">
       <h2>Features designed for every step of your job search</h2>
-      <p>From AI‑powered resume insights to application tracking, everything you need for your journey.</p>
+      <p>From AI-powered resume insights to application tracking, everything you need for your journey.</p>
     </div>
   </section>
   
-  <!-- EXISTING 3‑CARD SECTION -->
-  <section class="cards-section">
-    <!-- … cards-container … -->
-  </section>
-  
-  
-  <!-- 3‑CARD FEATURE SECTION -->
+  <!-- 3-CARD FEATURE SECTION -->
   <section class="cards-section">
     <div class="cards-container">
       <div class="card">
-        <img src="{% static 'images/interview-slide (1).webp' %}" alt="Interview slide">
+        <img src="{% static 'images/interview-slide.webp' %}" alt="Interview slide">
       </div>
       <div class="card">
         <img src="{% static 'images/goodfaces.jpg' %}" alt="Good faces">
       </div>
       <div class="card">
-        <img src="{% static 'images/resume builder.png' %}"
-             alt="AI Resume Builder"
-             class="focus-left">
+        <img src="{% static 'images/resume-builder.png' %}" alt="AI Resume Builder" class="focus-left">
       </div>
+    </div>
+  </section>
 
-<!-- OVERVIEW SECTION -->
-<section class="overview">
-  <div class="overview-container">
-
-    <!-- 1. Label -->
-    <span class="overview__label">Overview</span>
-
-    <!-- 2. Title -->
-    <h2 class="overview__title">Streamline your job search</h2>
-
-    <!-- 3. Flex row: cards on left, image on right -->
-    <div class="overview__row">
-
-      <!-- LEFT: Cards Container (40%) -->
-      <div class="overview__cards-container">
-        <div class="overview__cards">
-          <div class="overview__card">
-            <!-- <span class="overview__icon">✏️</span> -->
-            <div>
+  <!-- OVERVIEW SECTION -->
+  <section class="overview">
+    <div class="overview-container">
+      <span class="overview__label">Overview</span>
+      <h2 class="overview__title">Streamline your job search</h2>
+      <div class="overview__row">
+        <div class="overview__cards-container">
+          <div class="overview__cards">
+            <div class="overview__card">
               <h4>Resume Builder</h4>
               <p>Effortlessly build your resume and optimize where you need it.</p>
             </div>
-          </div>
-          <div class="overview__card">
-            <!-- <span class="overview__icon">📋</span> -->
-            <div>
+            <div class="overview__card">
               <h4>Track Job Applications</h4>
               <p>Track all your job applications in one place.</p>
             </div>
-          </div>
-          <div class="overview__card">
-            <!-- <span class="overview__icon">😊</span> -->
-            <div>
+            <div class="overview__card">
               <h4>Practice Interviews</h4>
               <p>Practice technical and behavioral interviews for any role.</p>
             </div>
           </div>
         </div>
+        <div class="overview__image-wrap">
+          <img 
+            src="{% static 'images/overview-image.jpg' %}" 
+            alt="Overview dashboard" 
+            class="overview__image"
+          >
+        </div>
       </div>
-
-      <!-- RIGHT: Image (60%) -->
-      <div class="overview__image-wrap">
-        <img
-          src="{% static 'images/ov.jpg' %}"
-          alt="Overview dashboard"
-          class="overview__image"
-        >
-      </div>
-
     </div>
-  </div>
-</section>
-
+  </section>
 
 </body>
 </html>
