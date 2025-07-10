@@ -1,0 +1,11 @@
+.env
+staticfiles/
+__pycache__/
+*.pyc
+venv/
+# Local env & build artifacts
+.env
+venv/
+staticfiles/
+__pycache__/
+*.pyc
